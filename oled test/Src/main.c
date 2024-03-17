@@ -123,11 +123,12 @@ int main(void)
 			SSD1306_DrawRectangle(20,10,30,20,1);
 			SSD1306_DrawRectangle(80,10,30,20,1);
 			SSD1306_UpdateScreen();
-			HAL_Delay(500);
+			HAL_Delay(1000);
 			SSD1306_DrawFilledRectangle(20,10,30,20,1);
 			SSD1306_DrawFilledRectangle(80,10,30,20,1);
-			SSD1306_UpdateScreen(); // update screen
-			HAL_Delay(50);
+			SSD1306_UpdateScreen(); // update screens
+			HAL_Delay(200);
+			//HAL_Delay(rand());
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
