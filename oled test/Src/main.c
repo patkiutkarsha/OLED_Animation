@@ -64,6 +64,8 @@ static void MX_I2C1_Init(void);
 static bool bFirstTime,bBlinkFlag = FALSE;
 bool bPrev = TRUE;
 static uint32_t ulCount = 0;
+void vBlink(void);
+void vAudioWave(void);
 /* USER CODE END 0 */
 
 /**
@@ -117,23 +119,44 @@ int main(void)
 //		}
 //		else
 //		{
-			SSD1306_Clear();
-			SSD1306_DrawLine(0,52,130,52,1);
-			//SSD1306_DrawLine(65,0,65,65,1);
-			SSD1306_DrawRectangle(20,10,30,20,1);
-			SSD1306_DrawRectangle(80,10,30,20,1);
-			SSD1306_UpdateScreen();
-			HAL_Delay(1000);
-			SSD1306_DrawFilledRectangle(20,10,30,20,1);
-			SSD1306_DrawFilledRectangle(80,10,30,20,1);
-			SSD1306_UpdateScreen(); // update screens
-			HAL_Delay(200);
-			//HAL_Delay(rand());
+//			SSD1306_Clear();
+			//SSD1306_DrawLine(0,52,130,52,1);
+			vAudioWave();
+			vBlink();
+			
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
 }
 
+static int x =0;
+void vAudioWave(void)
+{
+	SSD1306_DrawLine(0,52,130,52,1);
+	for(int i =0;i<130;i++)
+	{
+		x = sin(i);
+	}
+}
+
+void vBlink(void)
+{
+	for(int i=10;i<20;i++)
+	{
+		SSD1306_DrawFilledRectangle(20,10,30,i,1);
+		SSD1306_DrawFilledRectangle(80,10,30,i,1);
+		//HAL_Delay(1);
+		SSD1306_UpdateScreen();
+	}
+	HAL_Delay(1200);
+	for(int i=10;i<20;i++)
+	{
+		SSD1306_DrawFilledRectangle(20,10,30,i,0);
+		SSD1306_DrawFilledRectangle(80,10,30,i,0);
+		//HAL_Delay(1);
+		SSD1306_UpdateScreen();
+	}	
+}
 /**
   * @brief System Clock Configuration
   * @retval None

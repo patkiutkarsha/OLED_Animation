@@ -30,16 +30,16 @@ Build target 'oled test'
 compiling main.c...
 ../Inc/ssd1306.h(240): warning:  #1295-D: Deprecated declaration ssd1306_I2C_Init - give arg types
   void ssd1306_I2C_Init();
-../Src/main.c(121): warning:  #188-D: enumerated type mixed with another type
-  			SSD1306_DrawLine(0,52,130,52,1);
-../Src/main.c(123): warning:  #188-D: enumerated type mixed with another type
-  			SSD1306_DrawRectangle(20,10,30,20,1);
-../Src/main.c(124): warning:  #188-D: enumerated type mixed with another type
-  			SSD1306_DrawRectangle(80,10,30,20,1);
-../Src/main.c(127): warning:  #188-D: enumerated type mixed with another type
-  			SSD1306_DrawFilledRectangle(20,10,30,20,1);
-../Src/main.c(128): warning:  #188-D: enumerated type mixed with another type
-  			SSD1306_DrawFilledRectangle(80,10,30,20,1);
+../Src/main.c(134): warning:  #188-D: enumerated type mixed with another type
+  	SSD1306_DrawLine(0,52,130,52,1);
+../Src/main.c(141): warning:  #188-D: enumerated type mixed with another type
+  		SSD1306_DrawFilledRectangle(20,10,30,i,1);
+../Src/main.c(142): warning:  #188-D: enumerated type mixed with another type
+  		SSD1306_DrawFilledRectangle(80,10,30,i,1);
+../Src/main.c(149): warning:  #188-D: enumerated type mixed with another type
+  		SSD1306_DrawFilledRectangle(20,10,30,i,0);
+../Src/main.c(150): warning:  #188-D: enumerated type mixed with another type
+  		SSD1306_DrawFilledRectangle(80,10,30,i,0);
 ../Src/main.c(64): warning:  #177-D: variable "bFirstTime" was declared but never referenced
   static bool bFirstTime,bBlinkFlag = FALSE;
 ../Src/main.c(64): warning:  #177-D: variable "bBlinkFlag" was declared but never referenced
@@ -48,7 +48,7 @@ compiling main.c...
   static uint32_t ulCount = 0;
 ../Src/main.c: 9 warnings, 0 errors
 linking...
-Program Size: Code=6434 RO-data=510 RW-data=60 ZI-data=2756  
+Program Size: Code=6326 RO-data=510 RW-data=60 ZI-data=2756  
 FromELF: creating hex file...
 "oled test\oled test.axf" - 0 Error(s), 9 Warning(s).
 
@@ -74,7 +74,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
