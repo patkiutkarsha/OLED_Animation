@@ -30,27 +30,33 @@ Build target 'oled test'
 compiling main.c...
 ../Inc/ssd1306.h(240): warning:  #1295-D: Deprecated declaration ssd1306_I2C_Init - give arg types
   void ssd1306_I2C_Init();
-../Src/main.c(134): warning:  #188-D: enumerated type mixed with another type
-  	SSD1306_DrawLine(0,52,130,52,1);
-../Src/main.c(141): warning:  #188-D: enumerated type mixed with another type
-  		SSD1306_DrawFilledRectangle(20,10,30,i,1);
-../Src/main.c(142): warning:  #188-D: enumerated type mixed with another type
-  		SSD1306_DrawFilledRectangle(80,10,30,i,1);
-../Src/main.c(149): warning:  #188-D: enumerated type mixed with another type
-  		SSD1306_DrawFilledRectangle(20,10,30,i,0);
-../Src/main.c(150): warning:  #188-D: enumerated type mixed with another type
-  		SSD1306_DrawFilledRectangle(80,10,30,i,0);
+../Src/main.c(146): warning:  #188-D: enumerated type mixed with another type
+  		SSD1306_DrawPixel(i,x,1);
+../Src/main.c(182): warning:  #188-D: enumerated type mixed with another type
+  			SSD1306_DrawPixel(i,56,1);
+../Src/main.c(187): warning:  #188-D: enumerated type mixed with another type
+  			SSD1306_DrawPixel(i,x,1);
+../Src/main.c(192): warning:  #188-D: enumerated type mixed with another type
+  			SSD1306_DrawFilledRectangle(20,10,30,i,1);
+../Src/main.c(193): warning:  #188-D: enumerated type mixed with another type
+  			SSD1306_DrawFilledRectangle(80,10,30,i,1);
+../Src/main.c(207): warning:  #188-D: enumerated type mixed with another type
+  			SSD1306_DrawPixel(i,x,0);
+../Src/main.c(212): warning:  #188-D: enumerated type mixed with another type
+  			SSD1306_DrawFilledRectangle(20,10,30,i,0);
+../Src/main.c(213): warning:  #188-D: enumerated type mixed with another type
+  			SSD1306_DrawFilledRectangle(80,10,30,i,0);
 ../Src/main.c(64): warning:  #177-D: variable "bFirstTime" was declared but never referenced
   static bool bFirstTime,bBlinkFlag = FALSE;
 ../Src/main.c(64): warning:  #177-D: variable "bBlinkFlag" was declared but never referenced
   static bool bFirstTime,bBlinkFlag = FALSE;
 ../Src/main.c(66): warning:  #177-D: variable "ulCount" was declared but never referenced
   static uint32_t ulCount = 0;
-../Src/main.c: 9 warnings, 0 errors
+../Src/main.c: 12 warnings, 0 errors
 linking...
-Program Size: Code=6326 RO-data=510 RW-data=60 ZI-data=2756  
+Program Size: Code=11242 RO-data=798 RW-data=76 ZI-data=2756  
 FromELF: creating hex file...
-"oled test\oled test.axf" - 0 Error(s), 9 Warning(s).
+"oled test\oled test.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 

@@ -66,6 +66,7 @@ bool bPrev = TRUE;
 static uint32_t ulCount = 0;
 void vBlink(void);
 void vAudioWave(void);
+uint16_t slMapSine(uint32_t x, uint8_t l);
 /* USER CODE END 0 */
 
 /**
@@ -100,7 +101,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	SSD1306_Init (); 
   /* USER CODE END 2 */
-
+	//vAudioWave();
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -121,7 +122,7 @@ int main(void)
 //		{
 //			SSD1306_Clear();
 			//SSD1306_DrawLine(0,52,130,52,1);
-			vAudioWave();
+			//vAudioWave();
 			vBlink();
 			
     /* USER CODE BEGIN 3 */
@@ -129,31 +130,88 @@ int main(void)
   /* USER CODE END 3 */
 }
 
-static int x =0;
+#define Pi 3.14
+static uint32_t x = 0, Mod =7;
+static uint32_t ulAmplitude = 8, ulFrequency = 15;
+
 void vAudioWave(void)
 {
-	SSD1306_DrawLine(0,52,130,52,1);
+	//SSD1306_DrawLine(0,52,130,52,1);
 	for(int i =0;i<130;i++)
 	{
-		x = sin(i);
+		//x = sin(i*3.14);
+		//x = (sin(i*2*Pi/50)+1)*(2096);//(sin(i*2*Pi/100)+1)*(4096/2)
+		x = (sin(i*ulFrequency*Pi/100)+Mod)*(ulAmplitude);//sin((i*pi)/4);//(sin(i*Freq*Pi/100)+1)*(Ampl)
+		
+		SSD1306_DrawPixel(i,x,1);
+		SSD1306_UpdateScreen();
 	}
+//	for(int i =0;i<130;i++)
+//	{
+//		//x = sin(i*3.14);
+//		//x = (sin(i*2*Pi/50)+1)*(2096);//(sin(i*2*Pi/100)+1)*(4096/2)
+//		x = (sin(i*ulFrequency*Pi/100)+Mod)*(ulAmplitude);//sin((i*pi)/4);//(sin(i*Freq*Pi/100)+1)*(Ampl)
+//		
+//		//x = slMapSine(x,mod);
+//		SSD1306_DrawPixel(i,x,0);
+//		SSD1306_UpdateScreen();
+//	}	
+	
+	
 }
+
+//uint16_t slMapSine(uint32_t x, uint8_t l)
+//{
+//	if(x <= 0)
+//		x = 0;
+//	else if(x <= l || x >= l)
+//		x = x + l;
+//	else
+//		x = x;
+//	
+//	return x;
+//}
 
 void vBlink(void)
 {
-	for(int i=10;i<20;i++)
+	for(int i=0;i<130;i++)
 	{
-		SSD1306_DrawFilledRectangle(20,10,30,i,1);
-		SSD1306_DrawFilledRectangle(80,10,30,i,1);
-		//HAL_Delay(1);
+		
+		if(i < 32 || i > 96)
+		{
+			SSD1306_DrawPixel(i,56,1);
+		}
+		else
+		{
+			x = (sin(i*ulFrequency*Pi/100)+Mod)*(ulAmplitude);//sin((i*pi)/4);//(sin(i*Freq*Pi/100)+1)*(Ampl)
+			SSD1306_DrawPixel(i,x,1);
+		}
+		
+		if(i>= 10 && i <= 20) 
+		{
+			SSD1306_DrawFilledRectangle(20,10,30,i,1);
+			SSD1306_DrawFilledRectangle(80,10,30,i,1);
+		}
 		SSD1306_UpdateScreen();
 	}
-	HAL_Delay(1200);
-	for(int i=10;i<20;i++)
+	//HAL_Delay(1000);
+	for(int i=0;i<130;i++)
 	{
-		SSD1306_DrawFilledRectangle(20,10,30,i,0);
-		SSD1306_DrawFilledRectangle(80,10,30,i,0);
-		//HAL_Delay(1);
+		if(i < 32 || i > 96)
+		{
+			//SSD1306_DrawPixel(i,50,0);
+		}
+		else
+		{
+			x = (sin(i*ulFrequency*Pi/100)+Mod)*(ulAmplitude);//sin((i*pi)/4);//(sin(i*Freq*Pi/100)+1)*(Ampl)
+			SSD1306_DrawPixel(i,x,0);
+		}
+		
+		if(i>= 10 && i <= 20)
+		{
+			SSD1306_DrawFilledRectangle(20,10,30,i,0);
+			SSD1306_DrawFilledRectangle(80,10,30,i,0);
+		}
 		SSD1306_UpdateScreen();
 	}	
 }
